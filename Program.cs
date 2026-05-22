@@ -7,20 +7,21 @@ using OpenAI;
 using OpenAI.Chat;
 using System.ClientModel;
 
+
+
 IChatClient chatClient = new ChatClient("gpt-4o-mini",
     new ApiKeyCredential("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")
     ,new OpenAIClientOptions { Endpoint=new Uri("https://models.github.ai/inference") }).AsIChatClient();
 
 AIAgent frenchAgent = new ChatClientAgent(chatClient,
-    new ChatClientAgentOptions { 
-        Name= "FrenchAgent"
-    });
+        name: "FrenchAgent",
+        instructions:"You are a helpful assistant that translates English text into French. Translate the given English text into French. Return ONLY the French translation, nothing else."
+        );
 
 AIAgent spanishAgent = new ChatClientAgent(chatClient,
-    new ChatClientAgentOptions
-    {
-        Name = "SpanishAgent"
-    });
+        name: "SpanishAgent",
+        instructions: "You are a helpful assistant that translates French text into Spanish. Translate the given French text into Spanish. Return ONLY the Spanish translation, nothing else."
+  );
 
 string qualityReviewDesc="""
     you are a multilingual translation quality reviewer. Check translation for grammer accuracy, tone consistency, and cultural fit compared to the original English text.
@@ -32,10 +33,9 @@ string qualityReviewDesc="""
     Feedback: Accurate translation, friendly tone preserved, minor punctuation tweaks only.
     """;
 AIAgent qualityRevieweAgent = new ChatClientAgent(chatClient,
-    new ChatClientAgentOptions
-    {
-        Name = "qualityRevieweAgent"
-    });
+        name: "qualityRevieweAgent",
+        instructions: qualityReviewDesc
+    );
 
 AIAgent workflowAgent=AgentWorkflowBuilder.BuildSequential(frenchAgent,spanishAgent,qualityRevieweAgent).AsAIAgent();
 
