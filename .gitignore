@@ -1,0 +1,57 @@
+# Visual Studio and .NET artifacts
+.vs/
+.vscode/
+.idea/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+Debug/
+Release/
+
+# Rider
+.idea/
+
+# NuGet
+packages/
+*.nupkg
+project.assets.json
+
+# Dotnet generated
+*.g.cs
+*.g.i.cs
+*.GeneratedMSBuildEditorConfig.editorconfig
+
+# Publish output
+publish/
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Temporary files
+*.tmp
+*.temp
+
+# Rider local caches
+.idea/
+
+# Lock and package files
+*.lock.json
+
